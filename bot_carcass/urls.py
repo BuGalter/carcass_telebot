@@ -21,3 +21,9 @@ get_token()
 get_base_url()
     Формирует базовый урл из токена и начального урла из переменной URL
 """
+
+URL = 'https://api.telegram.org/bot'
+
+GET_UPDATES = 'getupdates'
+
+SEND_MESSAGE = 'sendMessage'
