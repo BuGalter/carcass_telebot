@@ -12,7 +12,7 @@ get_updates_longpolling()
     делает запрос к серверу телеграм для получения сообщений
 """
 import logging
-from urls import get_token
+from urls import get_token, get_base_url
 
 
 def main():
@@ -20,7 +20,8 @@ def main():
     if token is None:
         logging.warning('An error occurred while running the bot!')
         return
-    print(token)
+    base_url = get_base_url(token)
+    print(base_url)
 
 
 if __name__ == '__main__':
