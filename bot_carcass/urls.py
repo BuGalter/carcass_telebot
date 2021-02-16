@@ -60,3 +60,23 @@ def get_token():
     else:
         logging.warning('Not token in dict!!!')
         return None
+
+
+def get_base_url(token):
+    """Собирает базовый урл для доступа  к апи телеграм
+
+    Функция склеивает урл и полученный токен, возвращает базовый урл
+
+    Parameters
+    ----------
+    token : (string)
+        переменная, содержит токен для апи телеграм
+
+    Returns
+    -------
+    base_url : (string)
+        переменная сожержит базовый урл для запросов к апи
+    """
+
+    base_url = URL + token + '/'
+    return base_url
