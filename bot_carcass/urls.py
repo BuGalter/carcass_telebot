@@ -29,7 +29,7 @@ import logging
 
 URL = 'https://api.telegram.org/bot'
 
-GET_UPDATES = 'getupdates'
+GET_UPDATES = 'getUpdates'
 
 SEND_MESSAGE = 'sendMessage'
 

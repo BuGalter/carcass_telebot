@@ -12,7 +12,7 @@ get_updates_longpolling()
     делает запрос к серверу телеграм для получения сообщений
 """
 import logging
-from urls import get_token, get_base_url
+from urls import get_token, get_base_url, get_update_url
 
 
 def main():
@@ -22,6 +22,8 @@ def main():
         return
     base_url = get_base_url(token)
     print(base_url)
+    get_update = get_update_url(base_url)
+    print(get_update)
 
 
 if __name__ == '__main__':
