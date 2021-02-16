@@ -7,12 +7,8 @@ Global variable
 ---------------
 URL : str
     базовый урл для запросов к апи телеграм
-
-GET_UPDATES : str
-    часть урла для получения новых сообщений
-
-SEND_MESSAGE : str
-    часть урла для отправки ответных сообщений
+BOT_METHODS : dict
+    содержит методы доступные для бота для взаимодействия с апи телеграм
 
 Functions
 ---------
@@ -20,8 +16,9 @@ get_token()
     Получает токен из .env
 get_base_url()
     Формирует базовый урл из токена и начального урла из переменной URL
-get_update_url()
-    Формирует урл из переменной GET_UPDATES и базового урла
+get_method_url()
+    Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
+    и базового урла
 """
 
 from dotenv import dotenv_values
@@ -29,9 +26,10 @@ import logging
 
 URL = 'https://api.telegram.org/bot'
 
-GET_UPDATES = 'getUpdates'
-
-SEND_MESSAGE = 'sendMessage'
+BOT_METHODS = {
+    'get_updates': 'getUpdates',
+    'send_message': 'sendMessage'
+}
 
 
 def get_token():
@@ -84,22 +82,31 @@ def get_base_url(token: str) -> str:
     return base_url
 
 
-def get_update_url(base_url: str) -> str:
-    """Собирает урл для получения новых сообщений от апи телеграм
+def get_method_url(base_url: str, name_method: str) -> str:
+    """Собирает урл для определенный методов взаимодействия с апи телеграм
 
-    Функция склеивает базовый урл и и константу GET_UPDATES, возвращает урл
-    необходимый для получения обновлений от апи телеграм
+    Функция склеивает базовый урл и метод, определенный в словаре BOT_METHODS,
+    возвращает урл необходимый для работы с апи телеграм
 
     Parameters
     ----------
     base_url : (string)
         переменная, содержит, базовый урл
 
+    name_method : (string)
+        переменная, содержит, имя метода
+
+
     Returns
     -------
-    update_url : (string)
-        переменная сожержит урл для для получения новых сообщений
+    method_url : (string)
+        переменная сожержит урл для работы с апи телеграм
+    None
+        если метод не определен
     """
 
-    update_url = base_url + GET_UPDATES
-    return update_url
+    if name_method in BOT_METHODS:
+        method_url = base_url + BOT_METHODS[name_method]
+        return method_url
+    else:
+        return None
