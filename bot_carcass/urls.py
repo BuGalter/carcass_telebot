@@ -20,6 +20,8 @@ get_token()
     Получает токен из .env
 get_base_url()
     Формирует базовый урл из токена и начального урла из переменной URL
+get_update_url()
+    Формирует урл из переменной GET_UPDATES и базового урла
 """
 
 from dotenv import dotenv_values
@@ -62,7 +64,7 @@ def get_token():
         return None
 
 
-def get_base_url(token):
+def get_base_url(token: str) -> str:
     """Собирает базовый урл для доступа  к апи телеграм
 
     Функция склеивает урл и полученный токен, возвращает базовый урл
@@ -80,3 +82,24 @@ def get_base_url(token):
 
     base_url = URL + token + '/'
     return base_url
+
+
+def get_update_url(base_url: str) -> str:
+    """Собирает урл для получения новых сообщений от апи телеграм
+
+    Функция склеивает базовый урл и и константу GET_UPDATES, возвращает урл
+    необходимый для получения обновлений от апи телеграм
+
+    Parameters
+    ----------
+    base_url : (string)
+        переменная, содержит, базовый урл
+
+    Returns
+    -------
+    update_url : (string)
+        переменная сожержит урл для для получения новых сообщений
+    """
+
+    update_url = base_url + GET_UPDATES
+    return update_url
