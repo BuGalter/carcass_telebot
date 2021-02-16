@@ -53,10 +53,10 @@ def get_token():
     my_env_variables = dotenv_values(".env")
     if len(my_env_variables) == 0:
         logging.warning('Not token in file!!!')
-        return
+        return None
     keys = dict.keys(my_env_variables)
     if 'TOKEN' in keys:
         return my_env_variables['TOKEN']
     else:
         logging.warning('Not token in dict!!!')
-        return
+        return None
