@@ -89,6 +89,9 @@ def main():
         last_update = get_data_last_update(response)
         chat_id = get_chat_id(last_update)
         text = get_text_last_update(last_update)
+        if text == '/bot die':
+            logging.warning('Bot ordered to die!!!')
+            exit()
         send_message_url = get_method_url(base_url, 'send_message')
         check_url(send_message_url)
         code = send_message(send_message_url, chat_id, text)
