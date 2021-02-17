@@ -28,6 +28,17 @@ get_updates_longpolling()
 """
 import logging
 from urls import get_token, get_base_url, get_method_url
+from bot_methods import get_updates_longpolling, send_message
+
+
+def check_url(url: str):
+    """Функция для проверки существования урла
+
+    Описание -
+    """
+    if url is None:
+        logging.warning('Сommand not defined!')
+        exit('Bot - finished work, not correct!!!')
 
 
 def main():
@@ -42,11 +53,19 @@ def main():
         return
     base_url = get_base_url(token)
     print(base_url)
-    get_name_method = get_method_url(base_url, 'get_updates')
-    if get_name_method is None:
-        logging.warning('Сommand not defined!')
-        return
-    print(get_name_method)
+    update_url = get_method_url(base_url, 'get_updates')
+    check_url(update_url)
+    request, code = get_updates_longpolling(update_url)
+    if code != 200:
+        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+    print(code)
+    print(request)
+    send_message_url = get_method_url(base_url, 'send_message')
+    check_url(send_message_url)
+    code = send_message(send_message_url, 990665431)
+    if code != 200:
+        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+    print(code)
 
 
 if __name__ == '__main__':
