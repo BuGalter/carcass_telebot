@@ -63,3 +63,20 @@ def get_updates_longpolling(update_url, update_id=None):
     params = {'timeout': 100, 'offset': update_id}
     r = requests.get(update_url, data=params)
     return r.json(), r.status_code
+
+
+def send_message(send_message_url, chat_id, text='Hay, I am a bot!!!'):
+    """Отправляет сообщения серверу телеграма
+
+    Описание
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+
+    """
+    params = {'chat_id': chat_id, 'text': text}
+    r = requests.post(send_message_url, data=params)
+    return r.status_code
