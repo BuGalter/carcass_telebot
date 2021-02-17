@@ -34,3 +34,14 @@ get_method_url()
     Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
     и базового урла
 """
+
+
+def get_id_last_update(response: dict) -> int:
+    """Функция для получения номера последнего обновления
+
+    Описание -
+
+    """
+    data_last_update_id = response['result'][len(response['result']) - 1]
+    last_update_id = data_last_update_id['update_id']
+    return last_update_id
