@@ -56,3 +56,13 @@ def get_data_last_update(response: dict) -> dict:
     result = response['result']
     number_last_update = len(result) - 1
     return result[number_last_update]
+
+
+def get_chat_id(last_update: dict) -> int:
+    """функция для получения тела последнего сообщения
+
+    Описание -
+
+    """
+    chat_id = last_update['message']['chat']['id']
+    return chat_id
