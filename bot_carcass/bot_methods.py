@@ -34,3 +34,32 @@ get_method_url()
     Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
     и базового урла
 """
+
+import requests
+
+
+def get_updates_longpolling(update_url, update_id=None):
+    """Получает сообщения от сервера телеграм
+
+    Функция получает на вход урл и номер сообщения, по умолчанию None
+    делает запрос к серверу телеграм и возвращает ответ в виде
+    json-объекта
+
+    Parameters
+    ----------
+        update_url : str
+            урл для запроса, чтобы получить новые сообщения
+        update_id : str
+            номер последнего обновления
+
+    Returns
+    -------
+        r.json() : dict json
+            новые сообщения от бота
+        r.status_code : int
+            код ответа сервера
+
+    """
+    params = {'timeout': 100, 'offset': update_id}
+    r = requests.get(update_url, data=params)
+    return r.json(), r.status_code
