@@ -29,7 +29,7 @@ get_updates_longpolling()
 import logging
 from urls import get_token, get_base_url, get_method_url
 from bot_methods import get_updates_longpolling, send_message
-from parsing import get_id_last_update
+from parsing import get_id_last_update, get_data_last_update
 
 
 def check_url(url: str):
@@ -73,6 +73,8 @@ def main():
     print(response)
     last_update_id = get_id_last_update(response)
     print(last_update_id)
+    last_update = get_data_last_update(response)
+    print(last_update)
     send_message_url = get_method_url(base_url, 'send_message')
     check_url(send_message_url)
     code = send_message(send_message_url, 990665431)
