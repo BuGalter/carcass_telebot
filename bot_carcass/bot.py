@@ -29,7 +29,8 @@ get_updates_longpolling()
 import logging
 from urls import get_token, get_base_url, get_method_url
 from bot_methods import get_updates_longpolling, send_message
-from parsing import get_id_last_update, get_data_last_update, get_chat_id, get_text_last_update
+from parsing import get_id_last_update, get_data_last_update
+from parsing import get_chat_id, get_text_last_update
 
 
 def check_url(url: str):
@@ -54,37 +55,46 @@ def check_status_code(code: int):
     return
 
 
+def init_bot():
+    """Функция для начала работы бота
+
+    Описание -
+    """
+    token = get_token()
+    if token is None:
+        logging.warning('An error occurred while running the bot!')
+        exit()
+    base_url = get_base_url(token)
+    update_url = get_method_url(base_url, 'get_updates')
+    check_url(update_url)
+    response, code = get_updates_longpolling(update_url)
+    check_status_code(code)
+    last_update_id = get_id_last_update(response)
+    last_update_id += 1
+    return base_url, last_update_id
+
+
 def main():
     """Модуль-
 
     Описание-
 
     """
-    token = get_token()
-    if token is None:
-        logging.warning('An error occurred while running the bot!')
-        return
-    base_url = get_base_url(token)
-    update_url = get_method_url(base_url, 'get_updates')
-    check_url(update_url)
-    response, code = get_updates_longpolling(update_url)
-    check_status_code(code)
-    print(code)
-    print(response)
-    last_update_id = get_id_last_update(response)
-    print(last_update_id)
-    response, code = get_updates_longpolling(update_url, (last_update_id + 1))
-    check_status_code(code)
-    last_update = get_data_last_update(response)
-    print(last_update)
-    chat_id = get_chat_id(last_update)
-    print(chat_id)
-    text = get_text_last_update(last_update)
-    send_message_url = get_method_url(base_url, 'send_message')
-    check_url(send_message_url)
-    code = send_message(send_message_url, chat_id, text)
-    check_status_code(code)
-    print(code)
+    base_url, offset = init_bot()
+    while True:
+        update_url = get_method_url(base_url, 'get_updates')
+        check_url(update_url)
+        response, code = get_updates_longpolling(update_url, offset)
+        check_status_code(code)
+        last_update = get_data_last_update(response)
+        chat_id = get_chat_id(last_update)
+        text = get_text_last_update(last_update)
+        send_message_url = get_method_url(base_url, 'send_message')
+        check_url(send_message_url)
+        code = send_message(send_message_url, chat_id, text)
+        check_status_code(code)
+        offset += 1
+    return
 
 
 if __name__ == '__main__':
