@@ -66,3 +66,12 @@ def get_chat_id(last_update: dict) -> int:
     """
     chat_id = last_update['message']['chat']['id']
     return chat_id
+
+
+def get_text_last_update(last_update: dict) -> str:
+    """функция для получения текста последнего сообщения
+
+    Описание -
+
+    """
+    return last_update['message']['text']
