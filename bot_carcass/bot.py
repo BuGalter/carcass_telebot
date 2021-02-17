@@ -39,6 +39,18 @@ def check_url(url: str):
     if url is None:
         logging.warning('Сommand not defined!')
         exit('Bot - finished work, not correct!!!')
+    return
+
+
+def check_status_code(code: int):
+    """Функция для проверки статуса ответа
+
+    Описание -
+    """
+    if code != 200:
+        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+        exit('Bot - finished work, not correct!!!')
+    return
 
 
 def main():
@@ -52,19 +64,16 @@ def main():
         logging.warning('An error occurred while running the bot!')
         return
     base_url = get_base_url(token)
-    print(base_url)
     update_url = get_method_url(base_url, 'get_updates')
     check_url(update_url)
     request, code = get_updates_longpolling(update_url)
-    if code != 200:
-        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+    check_status_code(code)
     print(code)
     print(request)
     send_message_url = get_method_url(base_url, 'send_message')
     check_url(send_message_url)
     code = send_message(send_message_url, 990665431)
-    if code != 200:
-        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+    check_status_code(code)
     print(code)
 
 
