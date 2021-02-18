@@ -84,10 +84,6 @@ def main():
                 offset = get_id_update(update)
                 chat_id = get_chat_id(update)
                 text = get_text_update(update)
-                if text == '/bot-die':
-                    """Ввел эту команду для плавного отключения бота"""
-                    logging.warning('Someone killed the bot!!!')
-                    exit()
                 user_name = get_name_user(update)
                 answer = parsing_text_update(text)
                 send_message_url = get_method_url(base_url, 'send_message')
@@ -104,4 +100,3 @@ def main():
 if __name__ == '__main__':
     print('Bot - start work!')
     main()
-    print('Bot - finished work!')
