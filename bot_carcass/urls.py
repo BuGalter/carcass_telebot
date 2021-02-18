@@ -118,7 +118,7 @@ def get_method_url(base_url: str, name_method: str) -> str:
     Returns
     -------
     method_url : (string)
-        переменная сожержит урл для работы с апи телеграм
+        переменная содержит урл для работы с апи телеграм
     None
         если метод не определен в словаре BOT_METHODS
 
