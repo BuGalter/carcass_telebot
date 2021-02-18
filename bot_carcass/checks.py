@@ -34,3 +34,27 @@ get_method_url()
     Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
     и базового урла
 """
+
+import logging
+
+
+def check_url(url: str):
+    """Функция для проверки существования урла
+
+    Описание -
+    """
+    if url is None:
+        logging.warning('Сommand not defined!')
+        exit('Bot - finished work, not correct!!!')
+    return
+
+
+def check_status_code(code: int):
+    """Функция для проверки статуса ответа
+
+    Описание -
+    """
+    if code != 200:
+        logging.warning('Work bot, stoped!!! Error{}'.format(code))
+        exit('Bot - finished work, not correct!!!')
+    return
