@@ -36,6 +36,15 @@ get_method_url()
 """
 
 
+def get_data_update(response: dict) -> list:
+    """Функция для получения списка, который содержит ответы
+
+    Описание -
+
+    """
+    return response['result']
+
+
 def get_id_last_update(response: dict) -> int:
     """Функция для получения номера последнего обновления
 
