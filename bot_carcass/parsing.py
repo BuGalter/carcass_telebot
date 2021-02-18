@@ -45,15 +45,13 @@ def get_data_update(response: dict) -> list:
     return response['result']
 
 
-def get_id_last_update(response: dict) -> int:
+def get_id_update(update: dict) -> int:
     """Функция для получения номера последнего обновления
 
     Описание -
 
     """
-    data_last_update_id = response['result'][len(response['result']) - 1]
-    last_update_id = data_last_update_id['update_id']
-    return last_update_id
+    return update['update_id']
 
 
 def get_data_last_update(response: dict) -> dict:
