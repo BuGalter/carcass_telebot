@@ -74,10 +74,10 @@ def get_chat_id(update: dict) -> int:
     return update['message']['chat']['id']
 
 
-def get_text_last_update(last_update: dict) -> str:
-    """функция для получения текста последнего сообщения
+def get_text_update(update: dict) -> str:
+    """функция для получения текста сообщения
 
     Описание -
 
     """
-    return last_update['message']['text']
+    return update['message']['text']
