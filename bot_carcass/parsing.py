@@ -54,17 +54,6 @@ def get_id_update(update: dict) -> int:
     return update['update_id']
 
 
-def get_data_last_update(response: dict) -> dict:
-    """функция для получения тела последнего сообщения
-
-    Описание -
-
-    """
-    result = response['result']
-    number_last_update = len(result) - 1
-    return result[number_last_update]
-
-
 def get_chat_id(update: dict) -> int:
     """функция для получения номера чата
 
