@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "carcass_telebot"
-version = "0.0.1"
+version = "1.0.0"
 description = "The package contains a skeleton of a simple chatbot for telegrams"
 authors = ["BuGalter <wardoc78@gmail.com>"]
 license = "Apache License 2.0"
@@ -12,6 +12,7 @@ pytest = "^6.2.2"
 python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
+pylint = "^2.6.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
