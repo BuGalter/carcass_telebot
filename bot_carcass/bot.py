@@ -30,7 +30,7 @@ import logging
 from urls import get_token, get_base_url, get_method_url
 from bot_methods import get_updates_longpolling, send_message
 from parsing import get_id_last_update, get_data_last_update
-from parsing import get_chat_id, get_text_last_update
+from parsing import get_chat_id, get_text_last_update, get_data_update
 
 
 def check_url(url: str):
@@ -68,25 +68,26 @@ def main():
     base_url = get_base_url(token)
     offset = 0
     while True:
-        print(offset)
         update_url = get_method_url(base_url, 'get_updates')
         check_url(update_url)
         response, code = get_updates_longpolling(update_url, offset)
         check_status_code(code)
-        offset = get_id_last_update(response)
-        print(response)
-        last_update = get_data_last_update(response)
-        chat_id = get_chat_id(last_update)
-        text = get_text_last_update(last_update)
-        if text == '/bot die':
-            logging.warning('Bot ordered to die!!!')
-            exit()
-        send_message_url = get_method_url(base_url, 'send_message')
-        check_url(send_message_url)
-        code = send_message(send_message_url, chat_id, text)
-        check_status_code(code)
-        offset += 1
-        print(offset)
+        data_result = get_data_update(response)
+        if len(data_result) == 0:
+            continue
+        elif len(data_result) > 0:
+            for update in data_result:
+                offset = update['update_id']
+                chat_id = update['message']['chat']['id']
+                text = update['message']['text']
+                send_message_url = get_method_url(base_url, 'send_message')
+                check_url(send_message_url)
+                code = send_message(send_message_url, chat_id, text)
+                check_status_code(code)
+                offset += 1
+                continue
+        else:
+            logging.warning('Not possible!!! Check the bot!!!')
     return
 
 
