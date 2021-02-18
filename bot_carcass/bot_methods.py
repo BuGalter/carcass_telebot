@@ -17,39 +17,29 @@
 
 Основное назначение - хранение методов бота для работы с апи телеграм
 
-Global variable
----------------
-URL : str
-    базовый урл для запросов к апи телеграм
-BOT_METHODS : dict
-    содержит методы доступные для бота, чтобы взаимодействия с апи телеграм
-
 Functions
 ---------
-get_token()
-    Получает токен из .env
-get_base_url()
-    Формирует базовый урл из токена и начального урла из переменной URL
-get_method_url()
-    Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
-    и базового урла
+get_updates_longpolling()
+    Получает сообщения от сервера телеграм
+send_message()
+    Отправляет сообщения серверу телеграма
 """
 
 import requests
 
 
-def get_updates_longpolling(update_url, update_id=None):
+def get_updates_longpolling(update_url, update_id=0):
     """Получает сообщения от сервера телеграм
 
-    Функция получает на вход урл и номер сообщения, по умолчанию None
+    Функция получает на вход урл и номер сообщения, по умолчанию 0
     делает запрос к серверу телеграм и возвращает ответ в виде
-    json-объекта
+    json-объекта и код статуса ответа
 
     Parameters
     ----------
         update_url : str
             урл для запроса, чтобы получить новые сообщения
-        update_id : str
+        update_id : int
             номер последнего обновления
 
     Returns
@@ -57,7 +47,7 @@ def get_updates_longpolling(update_url, update_id=None):
         r.json() : dict json
             новые сообщения от бота
         r.status_code : int
-            код ответа сервера
+            код статуса ответа
 
     """
     params = {'timeout': 100, 'offset': update_id}
@@ -68,13 +58,23 @@ def get_updates_longpolling(update_url, update_id=None):
 def send_message(send_message_url, chat_id, text='Hay, I am a bot!!!'):
     """Отправляет сообщения серверу телеграма
 
-    Описание
+    Описание - на вход получает урл для отправки сообщений, номер чата
+    и текст, по умолчанию - 'Hay, I am a bot!!!'. Возвращает код статуса
+    ответа.
 
     Parameters
     ----------
+        send_message_url : str
+            урл для отправки сообщений
+        chat_id : int
+            номер чата, куда отправлять сообщение
+        text : str
+            текст сообщения, по умолчанию 'Hay, I am a bot!!!'
 
     Returns
     -------
+        r.status_code : int
+            код стутуса ответа
 
     """
     params = {'chat_id': chat_id, 'text': text}
