@@ -65,6 +65,15 @@ def get_chat_id(update: dict) -> int:
     return update['message']['chat']['id']
 
 
+def get_name_user(update: dict) -> str:
+    """функция для получения номера чата
+
+    Описание -
+
+    """
+    return update['message']['chat']['first_name']
+
+
 def get_text_update(update: dict) -> str:
     """функция для получения текста сообщения
 
