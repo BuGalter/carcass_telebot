@@ -87,10 +87,18 @@ def main():
                     send_message_url = get_method_url(base_url, 'send_message')
                     check_url(send_message_url)
                     code = send_message(
-                        send_message_url, chat_id, BOT_COMMANDS['text'])
+                        send_message_url, chat_id, BOT_COMMANDS[text])
                     check_status_code(code)
                     offset += 1
-                continue
+                    continue
+                else:
+                    send_message_url = get_method_url(base_url, 'send_message')
+                    check_url(send_message_url)
+                    code = send_message(
+                        send_message_url, chat_id, BOT_COMMANDS['not_command'])
+                    check_status_code(code)
+                    offset += 1
+                    continue
         else:
             logging.warning('Not possible!!! Check the bot!!!')
     return
