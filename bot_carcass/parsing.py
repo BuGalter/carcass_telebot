@@ -35,6 +35,8 @@ get_method_url()
     и базового урла
 """
 
+from commands import BOT_COMMANDS
+
 
 def get_data_update(response: dict) -> list:
     """Функция для получения списка, который содержит ответы
@@ -70,3 +72,15 @@ def get_text_update(update: dict) -> str:
 
     """
     return update['message']['text']
+
+
+def parsing_text_update(text: str) -> str:
+    """функция для получения текста сообщения
+
+    Описание -
+
+    """
+    if text in BOT_COMMANDS.keys():
+        return BOT_COMMANDS[text]
+    else:
+        return BOT_COMMANDS['not_command']
