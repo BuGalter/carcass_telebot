@@ -33,6 +33,7 @@ from parsing import (get_id_update,
                      get_data_update,
                      get_chat_id,
                      get_text_update)
+from commands import BOT_COMMANDS
 
 
 def check_url(url: str):
@@ -82,11 +83,13 @@ def main():
                 offset = get_id_update(update)
                 chat_id = get_chat_id(update)
                 text = get_text_update(update)
-                send_message_url = get_method_url(base_url, 'send_message')
-                check_url(send_message_url)
-                code = send_message(send_message_url, chat_id, text)
-                check_status_code(code)
-                offset += 1
+                if text in BOT_COMMANDS.keys():
+                    send_message_url = get_method_url(base_url, 'send_message')
+                    check_url(send_message_url)
+                    code = send_message(
+                        send_message_url, chat_id, BOT_COMMANDS['text'])
+                    check_status_code(code)
+                    offset += 1
                 continue
         else:
             logging.warning('Not possible!!! Check the bot!!!')
