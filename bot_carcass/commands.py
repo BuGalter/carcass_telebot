@@ -7,8 +7,6 @@ BOT_COMMANDS : dict
 """
 
 BOT_COMMANDS = {'/start': 'Добрый день! Чем могу Вам помочь?',
-                '/help': 'Меня сделали помочь с написанием чат-бота.\n\
-                          Список доступных команд:\n /start\n/help\n/settings',
+                '/help': 'Список доступных команд:\n /start\n/help\n/settings',
                 '/settings': 'Список возможных настроек:\n',
-                'not_command': 'Команда не известна. Список доступных \
-                                команд:\n /start\n/help\n/settings'}
+                'not_command': 'Команды:\n /start\n/help\n/settings'}
