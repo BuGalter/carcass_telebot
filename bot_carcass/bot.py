@@ -35,28 +35,7 @@ from parsing import (get_id_update,
                      get_text_update,
                      parsing_text_update,
                      get_name_user)
-
-
-def check_url(url: str):
-    """Функция для проверки существования урла
-
-    Описание -
-    """
-    if url is None:
-        logging.warning('Сommand not defined!')
-        exit('Bot - finished work, not correct!!!')
-    return
-
-
-def check_status_code(code: int):
-    """Функция для проверки статуса ответа
-
-    Описание -
-    """
-    if code != 200:
-        logging.warning('Work bot, stoped!!! Error{}'.format(code))
-        exit('Bot - finished work, not correct!!!')
-    return
+from checks import check_url, check_status_code
 
 
 def main():
