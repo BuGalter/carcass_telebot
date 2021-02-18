@@ -68,7 +68,7 @@ def main():
     token = get_token()
     if token is None:
         logging.warning('An error occurred while running the bot!')
-        exit()
+        exit('Bot - finished work, not correct!!!')
     base_url = get_base_url(token)
     offset = 0
     while True:
