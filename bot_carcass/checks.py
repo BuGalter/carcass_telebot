@@ -28,9 +28,10 @@ check_status_code()
 
 import sys
 import logging
+from typing import Union
 
 
-def check_url(url: str) -> None:
+def check_url(url: Union[str, None]) -> None:
     """Функция для проверки существования урла.
 
     Описание - функция нужна для проверки передан корректынй урл
