@@ -25,14 +25,15 @@ send_message()
     Отправляет сообщения серверу телеграма
 """
 
+from typing import Tuple
 import requests
 
 
-def get_updates_longpolling(update_url, update_id=0):
-    """Получает сообщения от сервера телеграм
+def get_updates_longpolling(update_url: str, update_id: int) -> Tuple[dict, int]:
+    """Получает сообщения от сервера телеграм.
 
-    Функция получает на вход урл и номер сообщения, по умолчанию 0
-    делает запрос к серверу телеграм и возвращает ответ в виде
+    Функция получает на вход урл и номер сообщения, делает
+    запрос к серверу телеграм и возвращает ответ в виде
     json-объекта и код статуса ответа
 
     Parameters
@@ -51,12 +52,12 @@ def get_updates_longpolling(update_url, update_id=0):
 
     """
     params = {'timeout': 100, 'offset': update_id}
-    r = requests.get(update_url, data=params)
-    return r.json(), r.status_code
+    answer = requests.get(update_url, data=params)
+    return answer.json(), answer.status_code
 
 
-def send_message(send_message_url, chat_id, text='Hay, I am a bot!!!'):
-    """Отправляет сообщения серверу телеграма
+def send_message(send_message_url: str, chat_id: int, text: str = 'Hay, I am a bot!!!') -> int:
+    """Отправляет сообщения серверу телеграма.
 
     Описание - на вход получает урл для отправки сообщений, номер чата
     и текст, по умолчанию - 'Hay, I am a bot!!!'. Возвращает код статуса
@@ -78,5 +79,5 @@ def send_message(send_message_url, chat_id, text='Hay, I am a bot!!!'):
 
     """
     params = {'chat_id': chat_id, 'text': text}
-    r = requests.post(send_message_url, data=params)
-    return r.status_code
+    answer = requests.post(send_message_url, data=params)
+    return answer.status_code
