@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Модуль соджержит команды бота
+"""Модуль соджержит команды бота.
 
 Основное назначение - хранение доступных боту команд
 
