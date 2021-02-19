@@ -35,9 +35,9 @@ get_method_url()
     Формирует урл из словаря методов для работы с апи телеграм BOT_METHODS
     и базового урла
 """
-
-from dotenv import dotenv_values
 import logging
+from typing import Union
+from dotenv import dotenv_values
 
 URL = 'https://api.telegram.org/bot'
 
@@ -47,8 +47,8 @@ BOT_METHODS = {
 }
 
 
-def get_token():
-    """Получает токен из .env
+def get_token() -> Union[str, None]:
+    """Получает токен из .env.
 
     Функция получает токен из .env. Для хранения и получения секретной
     информации используется python-dotenv
@@ -75,13 +75,12 @@ def get_token():
     keys = dict.keys(my_env_variables)
     if 'TOKEN' in keys:
         return my_env_variables['TOKEN']
-    else:
-        logging.warning('Not token in dict!!!')
-        return None
+    logging.warning('Not token in dict!!!')
+    return None
 
 
 def get_base_url(token: str) -> str:
-    """Собирает базовый урл для доступа  к апи телеграм
+    """Собирает базовый урл для доступа  к апи телеграм.
 
     Функция склеивает урл и полученный токен, возвращает базовый урл
 
@@ -100,8 +99,8 @@ def get_base_url(token: str) -> str:
     return base_url
 
 
-def get_method_url(base_url: str, name_method: str) -> str:
-    """Собирает урл для определенного метода взаимодействия с апи телеграм
+def get_method_url(base_url: str, name_method: str) -> Union[str, None]:
+    """Собирает урл для определенного метода взаимодействия с апи телеграм.
 
     Функция склеивает базовый урл и метод, определенный в словаре BOT_METHODS,
     возвращает урл необходимый для работы с апи телеграм
@@ -126,5 +125,4 @@ def get_method_url(base_url: str, name_method: str) -> str:
     if name_method in BOT_METHODS:
         method_url = base_url + BOT_METHODS[name_method]
         return method_url
-    else:
-        return None
+    return None
