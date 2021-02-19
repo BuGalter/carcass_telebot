@@ -24,6 +24,7 @@ main()
     основная функция, содержит логику работы бота и вызов вспомогательных
     методов
 """
+import sys
 import logging
 from urls import get_token, get_base_url, get_method_url
 from bot_methods import get_updates_longpolling, send_message
@@ -50,10 +51,10 @@ def main() -> None:
     прочитанное, чтобы сервер телеграма его больше не передавал.
     Для вывода сообщений используется logging, чтобы можно было легко
     перейти к записи в реальные лог файлы при необходимости.
+    Если бот не работал, отвечаем на все сообщения, которые поступили.
 
     Parameters
     ----------
-
     token
         содержит токен
     base_url
@@ -71,7 +72,7 @@ def main() -> None:
     token = get_token()
     if token is None:
         logging.warning('An error occurred while running the bot!')
-        exit('Bot - finished work, not correct!!!')
+        sys.exit('Bot - finished work, not correct!!!')
     base_url = get_base_url(token)
     offset = 0
     while True:
@@ -82,7 +83,6 @@ def main() -> None:
         data_result = get_data_update(response)
         if len(data_result) == 0:
             continue
-        """Если бот не работал, отвечаем на все сообщения, которые поступили"""
         elif len(data_result) > 0:
             for update in data_result:
                 offset = get_id_update(update)
@@ -95,11 +95,9 @@ def main() -> None:
                 answer = 'Hay, %s! ' % user_name + answer
                 code = send_message(send_message_url, chat_id, answer)
                 check_status_code(code)
-                """Увеличиваем, чтобы получить только новые сообщения"""
                 offset += 1
         else:
             logging.warning('Not possible!!! Check the bot!!!')
-    return
 
 
 if __name__ == '__main__':
