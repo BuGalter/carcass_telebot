@@ -83,19 +83,34 @@ def main() -> None:
         data_result = get_data_update(response)
         if len(data_result) == 0:
             continue
-        elif len(data_result) > 0:
+        if len(data_result) > 0:
             for update in data_result:
-                offset = get_id_update(update)
-                chat_id = get_chat_id(update)
-                text = get_text_update(update)
-                user_name = get_name_user(update)
-                answer = parsing_text_update(text)
-                send_message_url = get_method_url(base_url, 'send_message')
-                check_url(send_message_url)
-                answer = 'Hay, %s! ' % user_name + answer
-                code = send_message(send_message_url, chat_id, answer)
-                check_status_code(code)
-                offset += 1
+                print(update)
+                for key in update.keys():
+                    if 'message' in key:
+                        key_update = key
+                        flag = True
+                        continue
+                if flag is False:
+                    logging.warning('FALSE')
+                    sys.exit()
+                print(key_update)
+                print(update[key_update].keys())
+                if 'text' in update[key_update].keys():
+                    offset = get_id_update(update)
+                    chat_id = get_chat_id(update, key_update)
+                    text = get_text_update(update, key_update)
+                    user_name = get_name_user(update, key_update)
+                    answer = parsing_text_update(text)
+                    send_message_url = get_method_url(base_url, 'send_message')
+                    check_url(send_message_url)
+                    answer = 'Hay, %s! ' % user_name + answer
+                    code = send_message(send_message_url, chat_id, answer)
+                    check_status_code(code)
+                    offset += 1
+                else:
+                    logging.warning('hhhhhhhh')
+                    offset += 1
         else:
             logging.warning('Not possible!!! Check the bot!!!')
 

@@ -79,7 +79,7 @@ def get_id_update(update: dict) -> int:
     return update['update_id']
 
 
-def get_chat_id(update: dict) -> int:
+def get_chat_id(update: dict, key_update: str) -> int:
     """функция для получения номера чата.
 
     Описание - получает номер текущего чата
@@ -95,10 +95,10 @@ def get_chat_id(update: dict) -> int:
             номер текущего чата
 
     """
-    return update['message']['chat']['id']
+    return update[key_update]['chat']['id']
 
 
-def get_name_user(update: dict) -> str:
+def get_name_user(update: dict, key_update: str) -> str:
     """функция для получения имя юзера от которого пришло сообщение.
 
     Описание - получает имя юзера от которого пришло сообщение
@@ -114,10 +114,10 @@ def get_name_user(update: dict) -> str:
             имя пользователя текущего чата
 
     """
-    return update['message']['chat']['first_name']
+    return update[key_update]['chat']['first_name']
 
 
-def get_text_update(update: dict) -> str:
+def get_text_update(update: dict, key_update: str) -> str:
     """функция для получения текста сообщения.
 
     Описание - функция получает текст сообщения от пользователя
@@ -133,7 +133,7 @@ def get_text_update(update: dict) -> str:
             сообщение от пользователя
 
     """
-    return update['message']['text']
+    return update[key_update]['text']
 
 
 def parsing_text_update(text: str) -> str:
