@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Модуль для хранения функций для проверок.
+"""Модуль хранения функций для проверок.
 
 Основное назначение - хранение функций, которые служат для проверки
 корректности данных, используемых ботом в работе
@@ -26,11 +26,12 @@ check_status_code()
     Функция для проверки статуса кода ответа
 """
 
+import sys
 import logging
 
 
-def check_url(url: str):
-    """Функция для проверки существования урла
+def check_url(url: str) -> None:
+    """Функция для проверки существования урла.
 
     Описание - функция нужна для проверки передан корректынй урл
     или None
@@ -48,12 +49,11 @@ def check_url(url: str):
     """
     if url is None:
         logging.warning('Сommand not defined!')
-        exit('Bot - finished work, not correct!!!')
-    return
+        sys.exit('Bot - finished work, not correct!!!')
 
 
-def check_status_code(code: int):
-    """Функция для проверки статуса кода ответа
+def check_status_code(code: int) -> None:
+    """Функция для проверки статуса кода ответа.
 
     Описание -
 
@@ -69,6 +69,5 @@ def check_status_code(code: int):
 
     """
     if code != 200:
-        logging.warning('Work bot, stoped!!! Error{}'.format(code))
-        exit('Bot - finished work, not correct!!!')
-    return
+        logging.warning('Work bot, stoped!!! Error %d!' % code)
+        sys.exit('Bot - finished work, not correct!!!')
