@@ -27,14 +27,17 @@ main()
 import sys
 import logging
 from urls import get_token, get_base_url, get_method_url
-from bot_methods import get_updates_longpolling, send_message
+from bot_methods import (get_updates_longpolling,
+                         send_message,
+                         send_edited_message)
 from parsing import (get_id_update,
                      get_data_update,
                      get_chat_id,
                      get_text_update,
                      parsing_text_update,
                      get_name_user,
-                     get_message_status)
+                     get_message_status,
+                     get_message_id)
 from checks import check_url, check_status_code
 
 
@@ -86,10 +89,7 @@ def main() -> None:
             continue
         if len(data_result) > 0:
             for update in data_result:
-                print(update)
                 message_status = get_message_status(update)
-                print(message_status)
-                print(update[message_status].keys())
                 offset = get_id_update(update)
                 chat_id = get_chat_id(update, message_status)
                 send_message_url = get_method_url(base_url, 'send_message')
@@ -99,7 +99,17 @@ def main() -> None:
                     user_name = get_name_user(update, message_status)
                     answer = parsing_text_update(text)
                     answer = 'Hay, %s! ' % user_name + answer
-                    code = send_message(send_message_url, chat_id, answer)
+                    temporary_answer = answer
+                    if message_status == 'edited_message':
+                        if temporary_answer != answer:
+                            message_id = get_message_id(update, message_status)
+                            edit_message_url = get_method_url(
+                                base_url, 'edit_message')
+                            check_url(send_message_url)
+                            send_edited_message(
+                                edit_message_url, chat_id, message_id, text)
+                    else:
+                        code = send_message(send_message_url, chat_id, answer)
                 else:
                     code = send_message(send_message_url, chat_id)
                 check_status_code(code)
