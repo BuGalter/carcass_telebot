@@ -81,3 +81,30 @@ def send_message(send_message_url: str, chat_id: int, text: str = 'Hay, I am a b
     params = {'chat_id': chat_id, 'text': text}
     answer = requests.post(send_message_url, data=params)
     return answer.status_code
+
+
+def send_edited_message(edit_message_url: str, chat_id: int, message_id: int, text: str):
+    """Отправляет сообщения серверу телеграма.
+
+    Описание - на вход получает урл для отправки сообщений, номер чата
+    и текст, по умолчанию - 'Hay, I am a bot!!!'. Возвращает код статуса
+    ответа.
+
+    Parameters
+    ----------
+        send_message_url : str
+            урл для отправки сообщений
+        chat_id : int
+            номер чата, куда отправлять сообщение
+        text : str
+            текст сообщения, по умолчанию 'Hay, I am a bot!!!'
+
+    Returns
+    -------
+        r.status_code : int
+            код стутуса ответа
+
+    """
+    params = {'chat_id': chat_id, 'message_id': message_id, 'text': text}
+    answer = requests.post(edit_message_url, data=params)
+    return answer
