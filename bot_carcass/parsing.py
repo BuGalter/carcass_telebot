@@ -157,3 +157,26 @@ def parsing_text_update(text: str) -> str:
     if text in BOT_COMMANDS.keys():
         return BOT_COMMANDS[text]
     return BOT_COMMANDS['not_command']
+
+
+def get_message_status(update: dict) -> str:
+    """функция для получения статуса сообщения от бота.
+
+    Описание - функция получает статус сообщения, сортируя
+    ключи и выбирая первый элемент, полученого словаря, который 
+    содержит сообщение от бота
+
+    Parameters
+    ----------
+        update : dict
+            новое сообщение от бота
+
+    Returns
+    -------
+        message_status : str
+            статус сообщения, если новое, то message, если отредактированое
+            edited_message
+
+    """
+    message_status = sorted(update.keys())[0]
+    return message_status
