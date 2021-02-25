@@ -165,6 +165,28 @@ def get_message_status(update: dict) -> str:
     return message_status
 
 
+def get_message_id(update: dict, status_update: str) -> int:
+    """функция для получения номера сообщения.
+
+    Описание -
+
+    Parameters
+    ----------
+        update : dict
+            новое сообщение от бота
+        status_update : str
+            состояние сообщения, изменено или новое
+
+    Returns
+    -------
+        message_status : str
+            статус сообщения, если новое, то message, если отредактированое
+            edited_message
+
+    """
+    return update[status_update]['message_id']
+
+
 def parsing_text_update(text: str) -> str:
     """функция для проверки текста на совпадение с командами бота.
 
