@@ -43,7 +43,8 @@ URL = 'https://api.telegram.org/bot'
 
 BOT_METHODS = {
     'get_updates': 'getUpdates',
-    'send_message': 'sendMessage'
+    'send_message': 'sendMessage',
+    'edit_message': 'editMessageText'
 }
 
 
