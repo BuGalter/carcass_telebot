@@ -33,7 +33,8 @@ from parsing import (get_id_update,
                      get_chat_id,
                      get_text_update,
                      parsing_text_update,
-                     get_name_user)
+                     get_name_user,
+                     get_message_status)
 from checks import check_url, check_status_code
 
 
@@ -86,17 +87,16 @@ def main() -> None:
         if len(data_result) > 0:
             for update in data_result:
                 print(update)
-                """Получаем из отсортированого списка ключей, который содержит статус message"""
-                key_update = sorted(update.keys())[0]
-                print(key_update)
-                print(update[key_update].keys())
+                message_status = get_message_status(update)
+                print(message_status)
+                print(update[message_status].keys())
                 offset = get_id_update(update)
-                chat_id = get_chat_id(update, key_update)
+                chat_id = get_chat_id(update, message_status)
                 send_message_url = get_method_url(base_url, 'send_message')
                 check_url(send_message_url)
-                if 'text' in update[key_update].keys():
-                    text = get_text_update(update, key_update)
-                    user_name = get_name_user(update, key_update)
+                if 'text' in update[message_status].keys():
+                    text = get_text_update(update, message_status)
+                    user_name = get_name_user(update, message_status)
                     answer = parsing_text_update(text)
                     answer = 'Hay, %s! ' % user_name + answer
                     code = send_message(send_message_url, chat_id, answer)
