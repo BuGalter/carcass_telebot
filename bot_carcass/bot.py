@@ -40,6 +40,8 @@ from parsing import (get_id_update,
                      get_message_id)
 from checks import check_url, check_status_code
 
+name_env_file = '.env'
+
 
 def main() -> None:
     """Основная функция, содержит логику работы бота.
@@ -73,7 +75,7 @@ def main() -> None:
         код статуса ответа
 
     """
-    token = get_token()
+    token = get_token(name_env_file)
     if token is None:
         logging.warning('An error occurred while running the bot!')
         sys.exit('Bot - finished work, not correct!!!')
