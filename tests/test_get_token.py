@@ -28,19 +28,19 @@ tes_get_token_none()
 tes_get_token_absent()
     Тесты для функции get_token, файл не содержит данные
 """
-from oop_telebot import get_token
+from bot_carcass import urls
 
 
 def test_get_token():
-    result = get_token.get_token(".env1")
+    result = urls.get_token(".env1")
     assert result == 'FFFFFFF'
 
 
 def test_get_token_none():
-    result = get_token.get_token('.env2')
+    result = urls.get_token('.env2')
     assert result is None
 
 
 def test_get_token_absent():
-    result = get_token.get_token('.env3')
+    result = urls.get_token('.env3')
     assert result is None
