@@ -45,6 +45,25 @@ def test_get_token_absent():
     result = urls.get_token('.env3')
     assert result is None
 
+
 def test_get_base_url():
     result = urls.get_base_url('allokey')
     assert result == 'https://api.telegram.org/botallokey/'
+
+
+def test_get_method_url():
+    url = 'https://api.telegram.org/'
+    methods = {'get_updates': 'get_updates',
+               'send_message': 'send_message',
+               'edit_message': 'edit_message'}
+    result = urls.get_method_url(url, methods['get_updates'])
+    assert result == 'https://api.telegram.org/getUpdates'
+    result = urls.get_method_url(url, methods['send_message'])
+    assert result == 'https://api.telegram.org/sendMessage'
+    result = urls.get_method_url(url, methods['edit_message'])
+    assert result == 'https://api.telegram.org/editMessageText'
+
+
+def test_get_method_url_none():
+    result = urls.get_method_url('https://api.telegram.org/', 'none')
+    assert result is None
