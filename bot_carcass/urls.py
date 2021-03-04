@@ -48,7 +48,7 @@ BOT_METHODS = {
 }
 
 
-def get_token() -> Union[str, None]:
+def get_token(name_env_file: str) -> Union[str, None]:
     """Получает токен из .env.
 
     Функция получает токен из .env. Для хранения и получения секретной
@@ -58,6 +58,9 @@ def get_token() -> Union[str, None]:
     ----------
     TOKEN : (dict key)
         переменная в файле .env, содержит токен для апи телеграм
+
+    name_env_file : str
+        содержит путь к файлу в котором храниться токен
 
     Returns
     -------
@@ -69,7 +72,7 @@ def get_token() -> Union[str, None]:
         если файл .env пустой
 
     """
-    my_env_variables = dotenv_values(".env")
+    my_env_variables = dotenv_values(name_env_file)
     if len(my_env_variables) == 0:
         logging.warning('Not token in file!!!')
         return None
