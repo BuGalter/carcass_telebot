@@ -44,3 +44,7 @@ def test_get_token_none():
 def test_get_token_absent():
     result = urls.get_token('.env3')
     assert result is None
+
+def test_get_base_url():
+    result = urls.get_base_url('allokey')
+    assert result == 'https://api.telegram.org/botallokey/'
