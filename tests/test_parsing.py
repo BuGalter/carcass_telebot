@@ -40,7 +40,7 @@ parsing_text_update()
 from bot_carcass import parsing
 
 
-def test_parsing_text_update_1():
+def test_parsing_text_update():
     """
     """
     keys = ['/start', '/help', '/settings', 'command not', 'dsfghjksd']
