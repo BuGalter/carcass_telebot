@@ -15,15 +15,15 @@ of the work with api telegram**
 ### Attention
 
 **Проект находится в стадии разработки. Написание кода бота закоченно. 
-Проведено ручное тестирование. Бот работает исправно. Осталось написать 
-часть документации, тесты и провести глобальное тестирование.**
+Проведено ручное тестирование. Бот работает исправно. Осталось дописать
+тесты и провести глобальное тестирование.**
 
 **Храню в открытом доступе не законченный проект, потому что веду 
 разработку из разных мест**
 
 **The project is under development. The bot code is finished. 
 Manual testing done. The bot is working properly. It remains 
-to write some of the documentation, tests and conduct global testing.**
+to write some tests and conduct global testing.**
 
 **I keep an unfinished project in the public domain, because I conduct
 development from different places**
