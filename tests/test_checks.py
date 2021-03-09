@@ -19,10 +19,10 @@
 
 Functions
 ---------
-check_url()
-    Функция для проверки существования урла
-check_status_code()
-    Функция для проверки статуса кода ответа
+test_check_url_none()
+test_check_url()
+test_check_status_code_not_200()
+test_check_status_code()
 """
 
 import pytest
@@ -30,6 +30,11 @@ from bot_carcass import checks
 
 
 def test_check_url_none():
+    """Тест функции check_url.
+
+    Описание - в случае, когда урл не определен, проверяем, что
+    был совершен выход из программы
+    """
     url = None
     with pytest.raises(SystemExit) as excinfo:
         checks.check_url(url)
@@ -38,12 +43,22 @@ def test_check_url_none():
 
 
 def test_check_url():
+    """Тест функции check_url.
+
+    Описание - в случае, когда урл передан, работы программы продолжается,
+    функция возвращает None
+    """
     url = 'https://api.telegram.org/botallokey/'
     result = checks.check_url(url)
     assert result is None
 
 
 def test_check_status_code_not_200():
+    """Тест функции check_status_code.
+
+    Описание - в случае когда код не равен 200, проверяем, что
+    был совершен выход из программы
+    """
     code = 400
     with pytest.raises(SystemExit) as excinfo:
         checks.check_status_code(code)
@@ -52,6 +67,11 @@ def test_check_status_code_not_200():
 
 
 def test_check_status_code():
+    """Тест функции check_status_code.
+
+    Описание - если код равен 200, работа программы продолжается,
+    функция возвращает None
+    """
     code = 200
     result = checks.check_status_code(code)
     assert result is None
