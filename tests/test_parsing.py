@@ -36,3 +36,18 @@ parsing_text_update()
     если да то возвращает текст, соответствующий команде, если нет,
     то стандартное сообщение в котором содержиться перечень команд.
 """
+
+from bot_carcass import parsing
+
+
+def test_parsing_text_update():
+    """
+    """
+    result = parsing.parsing_text_update('/start')
+    assert result == 'Добрый день! Чем могу Вам помочь?'
+    result = parsing.parsing_text_update('/help')
+    assert result == 'Список доступных команд:\n /start\n/help\n/settings'
+    result = parsing.parsing_text_update('/settings')
+    assert result == 'Список возможных настроек:\n'
+    result = parsing.parsing_text_update('not_command')
+    assert result == 'Команды:\n /start\n/help\n/settings'
