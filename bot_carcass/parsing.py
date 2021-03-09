@@ -18,6 +18,11 @@
 Основное назначение - получение данных из ответа от апи телеграм,
 которые необходимы для работы бота
 
+Global variable
+---------------
+BOT_COMMANDS : dict
+    Словарь для хранения команд бота
+
 Functions
 ---------
 get_data_update()
@@ -37,7 +42,10 @@ parsing_text_update()
     то стандартное сообщение в котором содержиться перечень команд.
 """
 
-from commands import BOT_COMMANDS
+BOT_COMMANDS = {'/start': 'Добрый день! Чем могу Вам помочь?',
+                '/help': 'Список доступных команд:\n /start\n/help\n/settings',
+                '/settings': 'Список возможных настроек:\n',
+                'not_command': 'Команды:\n /start\n/help\n/settings'}
 
 
 def get_data_update(response: dict) -> list:
