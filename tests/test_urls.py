@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Модуль содержит тесты функцию для получения токена.
+"""Модуль содержит тесты urls.py.
 
-Основное назначение - тестирование функции get_token
+Основное назначение - тестирование функции, которые содержит модуль urls.py
 
 Functions
 ---------
@@ -32,7 +32,7 @@ test_get_base_url()
 test_get_method_url()
     набор тестов для функции get_method_url
 test_get_method_url_none()
-    тест для функции get_method_urlесли имя метода отсутствует
+    тест для функции get_method_url если имя метода отсутствует
     среди методов бота
 """
 from bot_carcass import urls
