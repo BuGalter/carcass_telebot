@@ -24,3 +24,34 @@ check_url()
 check_status_code()
     Функция для проверки статуса кода ответа
 """
+
+import pytest
+from bot_carcass import checks
+
+
+def test_check_url_none():
+    url = None
+    with pytest.raises(SystemExit) as excinfo:
+        checks.check_url(url)
+    exception_msg = excinfo.value.args[0]
+    assert exception_msg == 'Bot - finished work, not correct!!!'
+
+
+def test_check_url():
+    url = 'https://api.telegram.org/botallokey/'
+    result = checks.check_url(url)
+    assert result is None
+
+
+def test_check_status_code_not_200():
+    code = 400
+    with pytest.raises(SystemExit) as excinfo:
+        checks.check_status_code(code)
+    exception_msg = excinfo.value.args[0]
+    assert exception_msg == 'Bot - finished work, not correct!!!'
+
+
+def test_check_status_code():
+    code = 200
+    result = checks.check_status_code(code)
+    assert result is None
