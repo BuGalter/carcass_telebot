@@ -55,3 +55,15 @@ def test_parsing_text_update():
             result = parsing.parsing_text_update('not_command')
         else:
             assert result == 'Команды:\n /start\n/help\n/settings'
+
+
+def test_get_data_update():
+    """Набор тестов для функции get_data_update.
+
+    Описание - определяем произвольный словарь, который содержит одним из
+    ключей 'result', после вызова функции, проверяем, что она возвращает
+    список из словаря.
+    """
+    results = {'result': [1, 2, 3, 4], 'not_result': 'sdjhfs'}
+    res = parsing.get_data_update(results)
+    assert type(res) == list
