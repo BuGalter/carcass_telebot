@@ -61,12 +61,26 @@ def test_parsing_text_update():
 
 
 def test_get_data_update():
-    """Набор тестов для функции get_data_update.
+    """Тест для функции get_data_update.
 
     Описание - определяем произвольный словарь, который содержит одним из
     ключей 'result', после вызова функции, проверяем, что она возвращает
-    список из словаря.
+    список из словаря равный заданному в словаре.
     """
     results = {'result': [1, 2, 3, 4], 'not_result': 'sdjhfs'}
     res = parsing.get_data_update(results)
+    assert res == [1, 2, 3, 4]
     assert type(res) == list
+
+
+def test_get_id_update():
+    """Тест для функции get_id_update.
+
+    Описание - определяем произвольный словарь, который содержит одним из
+    ключей 'update_id', после вызова функции, проверяем, что она возвращает
+    из словаря число типа int равное 1.
+    """
+    results = {'update_id': 1, 'not_result': 'sdjhfs'}
+    res = parsing.get_id_update(results)
+    assert res == 1
+    assert type(res) == int
