@@ -40,6 +40,12 @@ parsing_text_update()
     функция проверяет, есть ли в тексте команды, которые знает бот,
     если да то возвращает текст, соответствующий команде, если нет,
     то стандартное сообщение в котором содержиться перечень команд.
+get_message_status()
+    функция получает статус сообщения, сортируя
+    ключи и выбирая первый элемент, полученого словаря, который
+    содержит сообщение от бота
+get_message_id()
+    функция получает номер сообщения от пользователя
 """
 
 BOT_COMMANDS = {'/start': 'Добрый день! Чем могу Вам помочь?',
@@ -56,13 +62,13 @@ def get_data_update(response: dict) -> list:
 
     Parameters
     ----------
-        response : dict
-            словарь, который содержит ответ от сервера телеграм
+    response : dict
+        словарь, который содержит ответ от сервера телеграм
 
     Returns
     -------
-        response['result'] : list
-            список сообщений от апи телеграм
+    response['result'] : list
+        список сообщений от апи телеграм
 
     """
     return response['result']
@@ -75,13 +81,13 @@ def get_id_update(update: dict) -> int:
 
     Parameters
     ----------
-        update : dict
-            словарь, который содержит текущий ответ от сервера телеграм
+    update : dict
+        словарь, который содержит текущий ответ от сервера телеграм
 
     Returns
     -------
-        update['update_id'] : int
-            номер текущего обновления
+    update['update_id'] : int
+        номер текущего обновления
 
     """
     return update['update_id']
@@ -94,15 +100,15 @@ def get_chat_id(update: dict, status_update: str) -> int:
 
     Parameters
     ----------
-        update : dict
-            словарь, который содержит текущий ответ от сервера телеграм
-        status_update : str
-            состояние сообщения, изменено или новое
+    update : dict
+        словарь, который содержит текущий ответ от сервера телеграм
+    status_update : str
+        состояние сообщения, изменено или новое
 
     Returns
     -------
-        update['message']['chat']['id'] : int
-            номер текущего чата
+    update['message']['chat']['id'] : int
+        номер текущего чата
 
     """
     return update[status_update]['chat']['id']
@@ -115,15 +121,15 @@ def get_name_user(update: dict, status_update: str) -> str:
 
     Parameters
     ----------
-        update : dict
-            словарь, который содержит текущий ответ от сервера телеграм
-        status_update : str
-            состояние сообщения, изменено или новое
+    update : dict
+        словарь, который содержит текущий ответ от сервера телеграм
+    status_update : str
+        состояние сообщения, изменено или новое
 
     Returns
     -------
-        update['message']['chat']['first_name'] : str
-            имя пользователя текущего чата
+    update['message']['chat']['first_name'] : str
+        имя пользователя текущего чата
 
     """
     return update[status_update]['chat']['first_name']
@@ -136,15 +142,15 @@ def get_text_update(update: dict, status_update: str) -> str:
 
     Parameters
     ----------
-        update : dict
-            словарь, который содержит текущий ответ от сервера телеграм
-        status_update : str
-            состояние сообщения, изменено или новое
+    update : dict
+        словарь, который содержит текущий ответ от сервера телеграм
+    status_update : str
+        состояние сообщения, изменено или новое
 
     Returns
     -------
-        update['message']['text'] : str
-            сообщение от пользователя
+    update['message']['text'] : str
+        сообщение от пользователя
 
     """
     return update[status_update]['text']
@@ -159,14 +165,14 @@ def get_message_status(update: dict) -> str:
 
     Parameters
     ----------
-        update : dict
-            новое сообщение от бота
+    update : dict
+        новое сообщение от бота
 
     Returns
     -------
-        message_status : str
-            статус сообщения, если новое, то message, если отредактированое
-            edited_message
+    message_status : str
+        статус сообщения, если новое, то message, если отредактированое
+        edited_message
 
     """
     message_status = sorted(update.keys())[0]
@@ -176,20 +182,20 @@ def get_message_status(update: dict) -> str:
 def get_message_id(update: dict, status_update: str) -> int:
     """функция для получения номера сообщения.
 
-    Описание -
+    Описание - функция получает номер сообщения от пользователя
 
     Parameters
     ----------
-        update : dict
-            новое сообщение от бота
-        status_update : str
-            состояние сообщения, изменено или новое
+    update : dict
+        новое сообщение от бота
+    status_update : str
+        состояние сообщения, изменено или новое
 
     Returns
     -------
-        message_status : str
-            статус сообщения, если новое, то message, если отредактированое
-            edited_message
+    message_status : str
+        статус сообщения, если новое, то message, если отредактированое
+        edited_message
 
     """
     return update[status_update]['message_id']
@@ -204,13 +210,13 @@ def parsing_text_update(text: str) -> str:
 
     Parameters
     ----------
-        text : str
-            текст сообщения от пользователя
+    text : str
+        текст сообщения от пользователя
 
     Returns
     -------
-        BOT_COMMANDS[text] : str
-            ответ бота
+    BOT_COMMANDS[text] : str
+        ответ бота
 
     """
     if text in BOT_COMMANDS.keys():

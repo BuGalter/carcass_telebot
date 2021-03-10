@@ -44,6 +44,8 @@ get_name_user()
     содержит ключ 'status_update' после вызова функции, проверяем, что
     она возвращает строку равную buba.
 get_text_update()
+get_message_status() - нет описаний в основном файле
+get_message_id()- нет описаний в основном файле
 """
 
 from bot_carcass import parsing
