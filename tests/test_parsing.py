@@ -33,9 +33,16 @@ get_id_update()
     определяем произвольный словарь, который содержит одним из
     ключей 'update_id', после вызова функции, проверяем, что она возвращает
     из словаря число типа int равное 1.
-
 get_chat_id()
+    определяем произвольный словарь словарей словарей, который содержит
+    ключи 'status_update', 'chat', 'id', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает чиcло типа int равное 43
 get_name_user()
+    определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'chat', 'first_name', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает строку равную buba.
 get_text_update()
 """
 
@@ -87,3 +94,35 @@ def test_get_id_update():
     res = parsing.get_id_update(results)
     assert res == 1
     assert type(res) == int
+
+
+def test_get_chat_id():
+    """Тест для функции get_chat_id.
+
+    Описание - определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'chat', 'id', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает чиcло типа int равное 43
+    """
+    update = {'status_update': {'chat': {'id': 43}},
+              'dfgddfgdf': {'sdfsdf': {'dsfsd': 'dsff'}}}
+    st_update = 'status_update'
+    res = parsing.get_chat_id(update, st_update)
+    assert res == 43
+    assert type(res) == int
+
+
+def test_get_name_user():
+    """Тест для функции get_name_user.
+
+    Описание - определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'chat', 'first_name', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает строку равную buba.
+    """
+    update = {'status_update': {'chat': {'first_name': 'buba'}},
+              'dfgddfgdf': {'sdfsdf': {'dsfsd': 'dsff'}}}
+    st_update = 'status_update'
+    res = parsing.get_name_user(update, st_update)
+    assert res == 'buba'
+    assert type(res) == str
