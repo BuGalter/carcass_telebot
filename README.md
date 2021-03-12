@@ -42,6 +42,11 @@
 
 ## Testing
 
+## Authors
+
+Nick - **BuGalter**
+Name - *Valery Yakubchik*
+
 ## License
 
 Этот проект лицензируется в соответствии с лицензией Apache License 2.0 — подробности 
