@@ -45,6 +45,7 @@
 ## Authors
 
 Nick - **BuGalter**
+
 Name - *Valery Yakubchik*
 
 ## License
