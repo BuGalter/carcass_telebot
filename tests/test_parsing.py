@@ -44,6 +44,10 @@ get_name_user()
     содержит ключ 'status_update' после вызова функции, проверяем, что
     она возвращает строку равную buba.
 get_text_update()
+    определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'text', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает строку равную my name buba.
 get_message_status() - нет описаний в основном файле
 get_message_id()- нет описаний в основном файле
 """
@@ -127,4 +131,20 @@ def test_get_name_user():
     st_update = 'status_update'
     res = parsing.get_name_user(update, st_update)
     assert res == 'buba'
+    assert type(res) == str
+
+
+def test_get_text_update():
+    """Тесты для функции get_text_update.
+
+    Описание - определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'text', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает строку равную my name buba.
+    """
+    update = {'status_update': {'text': 'my name buba', 'kjhk': 'gergegr'},
+              'dfgddfgdf': {'text': 'my name buba', 'kjhk': 'gergegr'}}
+    st_update = 'status_update'
+    res = parsing.get_text_update(update, st_update)
+    assert res == 'my name buba'
     assert type(res) == str
