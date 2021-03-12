@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Модуль для хранения методов необходимых для получения данных.
+"""Модуль для тестирования parsing.py.
 
-Основное назначение - получение данных из ответа от апи телеграм,
-которые необходимы для работы бота
+Основное назначение - набор тестов для функций, которые определенны в модуле
+parsing.py
 
 Functions
 ---------
@@ -53,6 +53,10 @@ get_message_status() - нет описаний в основном файле
     мы должны получить из отсортированного списка ключей, первый
     в данном случае 'aaaaa'
 get_message_id()- нет описаний в основном файле
+    определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'messsage_id', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает значение типа инт равное 10.
 """
 
 from bot_carcass import parsing
@@ -164,3 +168,19 @@ def test_get_message_status():
     res = parsing.get_message_status(update)
     assert res == 'aaaaa'
     assert type(res) == str
+
+
+def test_get_message_id():
+    """Тесты для функции get_message_id.
+
+    Описание - определяем произвольный словарь словарей, который содержит
+    ключи 'status_update', 'messsage_id', определяем переменную, которая
+    содержит ключ 'status_update' после вызова функции, проверяем, что
+    она возвращает значение типа инт равное 10.
+    """
+    update = {'status_update': {'message_id': 10, 'kjhk': 25},
+              'dfgddfgdf': {'mess_id': 10, 'kjhk': 25}}
+    st_update = 'status_update'
+    res = parsing.get_message_id(update, st_update)
+    assert type(res) == int
+    assert res == 10
