@@ -49,6 +49,9 @@ get_text_update()
     содержит ключ 'status_update' после вызова функции, проверяем, что
     она возвращает строку равную my name buba.
 get_message_status() - нет описаний в основном файле
+    определяем произвольный словарь, после вызова функции
+    мы должны получить из отсортированного списка ключей, первый
+    в данном случае 'aaaaa'
 get_message_id()- нет описаний в основном файле
 """
 
@@ -147,4 +150,17 @@ def test_get_text_update():
     st_update = 'status_update'
     res = parsing.get_text_update(update, st_update)
     assert res == 'my name buba'
+    assert type(res) == str
+
+
+def test_get_message_status():
+    """Тесты для функции get_message_status.
+
+    Описание - определяем произвольный словарь, после вызова функции
+    мы должны получить из отсортированного списка ключей, первый
+    в данном случае 'aaaaa'
+    """
+    update = {'bbbbb': '2', 'cccccc': '3', 'aaaaa': '1', 'message': '4'}
+    res = parsing.get_message_status(update)
+    assert res == 'aaaaa'
     assert type(res) == str
