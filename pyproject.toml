@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "carcass_telebot"
+name = "bot_carcass"
 version = "1.0.0"
 description = "The package contains a skeleton of a simple chatbot for telegrams"
 authors = ["BuGalter <wardoc78@gmail.com>"]
