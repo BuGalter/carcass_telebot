@@ -13,7 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Пакет содержит тесты
+"""Пакет содержит тесты.
+
+env1, env2, env3 : Тестовые данные для проверки функции get_token
+
+test_urls.py : Тесты функций модуля urls.py
+
+test_checks.py : Тесты функций модуля checks.py
+
+test_parsing.py : Тесты функций модуля parsing.py
+
+test_bot_methods.py : Тесты функций модуля bot_methods.py
 
 Valera WarDoc [https://github.com/BuGalter]
 wardoc78@gmail.com
