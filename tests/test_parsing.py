@@ -93,7 +93,7 @@ def test_get_data_update():
     results = {'result': [1, 2, 3, 4], 'not_result': 'sdjhfs'}
     res = parsing.get_data_update(results)
     assert res == [1, 2, 3, 4]
-    assert type(res) == list
+    assert isinstance(res, list) is True
 
 
 def test_get_id_update():
@@ -106,7 +106,7 @@ def test_get_id_update():
     results = {'update_id': 1, 'not_result': 'sdjhfs'}
     res = parsing.get_id_update(results)
     assert res == 1
-    assert type(res) == int
+    assert isinstance(res, int) is True
 
 
 def test_get_chat_id():
@@ -122,7 +122,7 @@ def test_get_chat_id():
     st_update = 'status_update'
     res = parsing.get_chat_id(update, st_update)
     assert res == 43
-    assert type(res) == int
+    assert isinstance(res, int) is True
 
 
 def test_get_name_user():
@@ -138,7 +138,7 @@ def test_get_name_user():
     st_update = 'status_update'
     res = parsing.get_name_user(update, st_update)
     assert res == 'buba'
-    assert type(res) == str
+    assert isinstance(res, str) is True
 
 
 def test_get_text_update():
@@ -154,7 +154,7 @@ def test_get_text_update():
     st_update = 'status_update'
     res = parsing.get_text_update(update, st_update)
     assert res == 'my name buba'
-    assert type(res) == str
+    assert isinstance(res, str) is True
 
 
 def test_get_message_status():
@@ -167,7 +167,7 @@ def test_get_message_status():
     update = {'bbbbb': '2', 'cccccc': '3', 'aaaaa': '1', 'message': '4'}
     res = parsing.get_message_status(update)
     assert res == 'aaaaa'
-    assert type(res) == str
+    assert isinstance(res, str) is True
 
 
 def test_get_message_id():
@@ -182,5 +182,5 @@ def test_get_message_id():
               'dfgddfgdf': {'mess_id': 10, 'kjhk': 25}}
     st_update = 'status_update'
     res = parsing.get_message_id(update, st_update)
-    assert type(res) == int
     assert res == 10
+    assert isinstance(res, int) is True
