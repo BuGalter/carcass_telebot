@@ -20,9 +20,17 @@
 Functions
 ---------
 test_check_url_none()
+    в случае, когда урл не определен, проверяем, что
+    был совершен выход из программы
 test_check_url()
+    в случае, когда урл передан, работы программы продолжается,
+    функция возвращает None
 test_check_status_code_not_200()
+    Описание - в случае когда код не равен 200, проверяем, что
+    был совершен выход из программы
 test_check_status_code()
+    если код равен 200, работа программы продолжается,
+    функция возвращает None
 """
 
 import pytest
@@ -49,8 +57,7 @@ def test_check_url():
     функция возвращает None
     """
     url = 'https://api.telegram.org/botallokey/'
-    result = checks.check_url(url)
-    assert result is None
+    assert checks.check_url(url) is None
 
 
 def test_check_status_code_not_200():
@@ -73,5 +80,4 @@ def test_check_status_code():
     функция возвращает None
     """
     code = 200
-    result = checks.check_status_code(code)
-    assert result is None
+    assert checks.check_status_code(code) is None
