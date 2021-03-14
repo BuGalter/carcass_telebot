@@ -38,17 +38,17 @@ def get_updates_longpolling(update_url: str, update_id: int) -> Tuple[dict, int]
 
     Parameters
     ----------
-        update_url : str
-            урл для запроса, чтобы получить новые сообщения
-        update_id : int
-            номер последнего обновления
+    update_url : str
+        урл для запроса, чтобы получить новые сообщения
+    update_id : int
+        номер последнего обновления
 
     Returns
     -------
-        r.json() : dict json
-            новые сообщения от бота
-        r.status_code : int
-            код статуса ответа
+    r.json() : dict json
+        новые сообщения от бота
+    r.status_code : int
+        код статуса ответа
 
     """
     params = {'timeout': 100, 'offset': update_id}
@@ -65,17 +65,17 @@ def send_message(send_message_url: str, chat_id: int, text: str = 'Hay, I am a b
 
     Parameters
     ----------
-        send_message_url : str
-            урл для отправки сообщений
-        chat_id : int
-            номер чата, куда отправлять сообщение
-        text : str
-            текст сообщения, по умолчанию 'Hay, I am a bot!!!'
+    send_message_url : str
+        урл для отправки сообщений
+    chat_id : int
+        номер чата, куда отправлять сообщение
+    text : str
+        текст сообщения, по умолчанию 'Hay, I am a bot!!!'
 
     Returns
     -------
-        r.status_code : int
-            код стутуса ответа
+    r.status_code : int
+        код стутуса ответа
 
     """
     params = {'chat_id': chat_id, 'text': text}
@@ -91,18 +91,18 @@ def send_edited_message(edit_message_url: str, chat_id: int, message_id: int, te
 
     Parameters
     ----------
-        send_message_url : str
-            урл для отправки сообщений
-        chat_id : int
-            номер чата, куда отправлять сообщение
-        message_id : int
-            номер редактируемого сообщения
-        text : str
-            текст сообщения
+    send_message_url : str
+        урл для отправки сообщений
+    chat_id : int
+        номер чата, куда отправлять сообщение
+    message_id : int
+        номер редактируемого сообщения
+    text : str
+        текст сообщения
 
     Returns
     -------
-        None
+    None
 
     """
     params = {'chat_id': chat_id, 'message_id': message_id, 'text': text}
