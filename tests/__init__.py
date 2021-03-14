@@ -23,10 +23,8 @@ test_checks.py : Тесты функций модуля checks.py
 
 test_parsing.py : Тесты функций модуля parsing.py
 
-test_bot_methods.py : Тесты функций модуля bot_methods.py
-
 Valera WarDoc [https://github.com/BuGalter]
 wardoc78@gmail.com
 License: Apache License 2.0
-version: "0.0.1"
+version: "1.0.0"
 """
