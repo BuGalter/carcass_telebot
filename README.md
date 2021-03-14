@@ -38,10 +38,12 @@
 `python -m venv venv`
 
 * Активировать виртуальное окружение:
-    * Windows:
+    * Windows: 
+
     `.\venv\Scripts\activate.bat`
 
-    * Linux:
+    * Linux: 
+
     `source venv/bin/activate`
 
 * Установить poetry:
